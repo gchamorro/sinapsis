@@ -1,0 +1,8 @@
+# ignore virtualenv directory
+/venv/
+/.komodotools/
+
+# ignore files...
+db.sqlite3
+manage.py
+sinapsis.komodoproject
