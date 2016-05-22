@@ -1,0 +1,104 @@
+<script>
+$(document).ready(function(){
+//
+//focus on first input onload
+//
+    //if ($('.select2-search__field')) {
+    //    $(this).focus();
+    //} else {
+    //    $(':input:enabled:visible:first').focus();
+    //}
+    
+    //$('.select2-search__field').focus();
+    $(':input:enabled:visible:first').focus();
+//
+//navigating through tabs
+//
+    $(".nav-tabs a").click(function(){
+        $(this).tab('show');
+    });
+    $('.nav-tabs a').on('shown.bs.tab', function(event){
+        var x = $(event.target).text();         // active tab
+        var y = $(event.relatedTarget).text();  // previous tab
+        $(".act span").text(x);
+        $(".prev span").text(y);
+    });
+//
+// datepicker
+//
+    $('.datepicker').datepicker();
+    
+//
+// change label value on checkbox click
+//   
+    
+    //$("input:checkbox").on("change", function() {
+    //    $("label[for='" + this.id + "']").html('<input class="checkboxinput" id="id_active" name="active" type="checkbox" value="1"> Inactivo');
+    //});  NOT WORKING: label has inner html tags
+    
+    $(".js-example-basic-single").select2();
+    
+//
+// placeholder change
+//
+
+    //function inputPlaceholder(input){ 
+    //    var value = input.val();
+    //    input.focus( function(){
+    //        if( $.trim(input.val()) == value ){ input.val(''); }
+    //    });
+    //    input.blur( function(){
+    //        if( $.trim(input.val()) == '' ){ input.val(value); }
+    //    });
+    //}
+    
+    function changePlacelHolderDinamically() {
+        $('select').on('change', function() {
+            selectedValue = this.value;
+            switch(selectedValue) {
+               case 'CP':
+                    $("#id_detail").attr("placeholder", "Ej: 0351-2482707");
+                   break;
+               case 'FP':
+                    $("#id_detail").attr("placeholder", "Ej: 0351-4940719");
+                   break;
+               case 'MA':
+                    $("#id_detail").attr("placeholder", "Ej: mimail@dominio.com");
+                   break;
+               case 'WP':
+                    $("#id_detail").attr("placeholder", "Ej: www.mipagina.com");
+                   break;
+               case 'FA':
+                    $("#id_detail").attr("placeholder", "Ej: www.facebook.com/mifacebook");
+                   break;
+               case 'TW':
+                    $("#id_detail").attr("placeholder", "Ej: twitter.com/mitwitter");
+                   break;
+               case 'FX':
+                    $("#id_detail").attr("placeholder", "Ej: 0351-2482707");
+                   break;
+               case 'UN':
+                    $("#id_detail").attr("placeholder", "Formato no definido");
+                   break;                 
+               default:
+                   break;
+            }
+        });        
+    }
+    
+    changePlacelHolderDinamically();
+
+
+//
+//
+//
+
+    //$(document).keypress(function(e) {
+    //    if(e.which == 13) {
+    //    $(document.activeElement).next().focus();
+    //    }
+    //});
+    
+});
+    
+</script>

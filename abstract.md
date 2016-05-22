@@ -91,4 +91,8 @@ class Person(models.Model):
 * max_length=**100?**
 	What is the recommended length for this kind of fields?
 * validators
-	Only alphabetic characters, including **'**, and spanish accented characteres  
+	Only alphabetic characters, including **'**, and spanish accented characteres
+    
+## UX
+
+### Bootstrap

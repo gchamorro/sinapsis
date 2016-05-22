@@ -1,0 +1,55 @@
+<!--http://uxmovement.com/forms/why-infield-top-aligned-form-labels-are-quickest-to-scan/-->
+<!--http://codepen.io/ActiveCodex/pen/YXXewW-->
+
+{% extends 'base/base.html' %}
+{% block title %}{{ block.super}} - Home {% endblock %}
+{% block content %}
+
+
+<h2>Why Infield Top Aligned Form Labels are Quickest to Scan</h2>
+
+<div class="form">
+		<header>Sign Up</header>
+	
+		<div class="row">
+				<div class="col-md-6">
+						<label for="firstname">First Name</label>
+						<input id="firstname" type="text" placeholder="First Name" autofocus />
+				</div>
+				<div class="col-md-6">
+						<label for="lastname">Last Name</label>
+						<input id="lastname" type="text" placeholder="Last Name" />
+				</div>
+		</div>
+
+		<div class="row">
+				<div class="col-md-12">
+						<label for="email">Email</label>
+						<input id="email" type="text" placeholder="Email" />
+				</div>
+		</div>
+
+		<div class="row">
+				<div class="col-md-6">
+						<label for="password">Password</label>
+						<input id="password" type="password" placeholder="Password" />
+				</div>
+				<div class="col-md-6">
+						<label for="confirmpassword">Confirm Password</label>
+						<input id="confirmpassword" type="password" placeholder="Confirm Password" />
+				</div>
+		</div>
+
+		<div class="row">
+				<div class="col-md-12">
+						<label for="username">Username</label>
+						<input id="username" type="text" placeholder="Username" />
+				</div>
+		</div>
+
+		<footer>
+				<p>By clicking 'Sign Up', you confirm that you accept our <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>
+				<button type="submit" value="Sign Up" />Sign Up</button>
+		</footer>
+</div>
+{% endblock %}

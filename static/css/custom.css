@@ -1,0 +1,48 @@
+sinapsis-forms {
+	max-width: 60% !important;
+	clear: both;
+}
+/*
+.row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+.form-group {
+	margin-bottom: 0 !important;
+}
+
+.form-control {
+	height: auto !important;
+    vertical-align: middle !important;	
+}
+
+.form label {
+	color: #6D6BE5 !important;
+}
+
+
+select {
+    vertical-align: middle !important;
+}
+*/
+
+.btn-primary, btn-danger, btn-warning, btn-info {
+	border: 0 !important;
+}
+
+* {
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+}
+
+tr:hover { 
+   background: #e6f7ff; 
+   text-decoration: none;
+}
+td a { 
+    display: block; 
+}
+td a:hover { 
+   text-decoration: none;
+}

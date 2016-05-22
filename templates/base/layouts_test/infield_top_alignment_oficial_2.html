@@ -1,0 +1,46 @@
+{% extends 'people/index.html' %}
+{% block title %} {{ block.super}} - Crear rol {% endblock %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+    <h1>
+  Infield Top Aligned Form Labels
+</h1>
+<form class="sinapsis-forms">
+  <fieldset class="span-6">
+    <label for="text-field">Full Name</label><input id="text-field" type="text" />
+  </fieldset>
+  <fieldset class="span-6">
+    <label for="select-field">Weapon</label><select id="select-field">
+      <option disabled="" selected="" value=""></option>
+      <option>
+        sword
+      </option>
+      <option>
+        baton
+      </option>
+      <option>
+        shotgun
+      </option>
+      <option>
+        shield
+      </option>
+    </select>
+  </fieldset>
+  <fieldset>
+    <label for="textarea-field">Details</label><textarea id="textarea-field"></textarea>
+  </fieldset>
+  <fieldset>
+    <label for="email-field">Email</label><input id="email-field" type="email" />
+  </fieldset>
+  <fieldset class="action">
+    <button type="submit">Submit</button>
+  </fieldset>
+</form>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+        <script src="js/index.js"></script>
+{% endblock %}
