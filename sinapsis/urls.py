@@ -17,9 +17,11 @@ from django.conf.urls import url, include
 from django.contrib import admin
 import people
 from people import views as people_views
+from people.views import PersonListView
+
 
 urlpatterns = [
-    url(r'^$', people_views.index),
+    url(r'^$', PersonListView.as_view()),
     url(r'^admin/', admin.site.urls),
     url(r'^people/', include('people.urls')),
 ]

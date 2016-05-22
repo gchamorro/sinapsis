@@ -1,5 +1,16 @@
-{% extends "base/base.html" %}
-{% block title %} {{ block.super}} - List people {% endblock %}
+{% extends 'base/base_list.html' %}
+{% load staticfiles %}
+{% block title %} {{ block.super }} {{ title_plus }} {% endblock %}
 {% block content %}
-	<h1>People</h1>
+{% include 'base/messages.html' %}
+
+<!--
+starts layout of the body (no nav...)
+-->
+{% include 'dev/gen/header.html' %}
+<hr>
+{% include 'dev/gen/actions.html' %}
+<hr>
+{% include 'dev/gen/list.html' %}
+
 {% endblock %}

@@ -71,11 +71,15 @@ class Person(models.Model):
     def validate_names(self, value):
         validator = [RegexValidator(u'^[a-zA-ZñÑüÜáéíóúÁÉÍÓÚ\'\s\.]*$', 'Sólo se permiten caracteres al fabéticos')],
         pass
-        
+    
+
+    def get_fields(self):
+        return [(field.value_to_string(self)) for field in Person._meta.fields]
+       
     full_name = property(_get_full_name)
     age = property(_calculate_age)
     
     class Meta:
         ordering = ['last_names']
         verbose_name="Persona"
-        verbose_name_plural="People"  
+        verbose_name_plural="People"

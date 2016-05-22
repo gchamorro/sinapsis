@@ -1,0 +1,33 @@
+<!--
+this basic template snippet is for development only
+-->
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Listado</h3>
+			</div>
+
+			<table class="table table-hover">	
+				<thead>
+					<tr>
+						{% for item in layout_gen_list_theaders %}
+						<th>{{ item.verbose_name }}</th>
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+				{% for item in object_list %}
+					<tr>
+						{% for value in item.get_fields %}
+						<td><a href="{% url detail_link item.id %}">{{ value }}</a></td>
+						{% endfor %}
+
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

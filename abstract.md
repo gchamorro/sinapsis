@@ -92,7 +92,23 @@ class Person(models.Model):
 	What is the recommended length for this kind of fields?
 * validators
 	Only alphabetic characters, including **'**, and spanish accented characteres
+
+##### first_names
     
 ## UX
+
+### 
+
+### Development
+
+* Define basic interfaces (some CRUD) to apply globally, followin some (simple?) generic steps. For example, what and how is isplayed on index pages (despite the fact that it's not going to be on production). The most basic is a list and some action commands maybe.
+
+* Define structurally every view, without forcing specific html, css, javascript on it. It maybe even interchangeable. According to the design then start working on the html snippets or helpers, maybe with no app interactio (pure html).
+
+* Define some helper interfaces for common tasks, example of it is messages.
+
+* Use specific name variables for specific layouts when passing to templates, so an error will raise if not meant for that layout
+
+### Production
 
 ### Bootstrap
