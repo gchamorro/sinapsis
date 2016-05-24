@@ -8,7 +8,14 @@ from django.core.validators import RegexValidator
 
 # Create your models here.
 
-class Person(models.Model):
+class BaseModel(models.Model):
+    def get_fields(self):
+        return [{'vname':field.verbose_name, 'name':field.name, 'value':field.value_to_string(self)} for field in self._meta.fields]
+    class Meta:
+        abstract = True
+    
+
+class Person(BaseModel):
     DNI = 'DN'
     LIBRETA_CIVICA = 'LC'
     LIBRETA_ENROLAMIENTO = 'LE'
@@ -71,10 +78,6 @@ class Person(models.Model):
     def validate_names(self, value):
         validator = [RegexValidator(u'^[a-zA-ZñÑüÜáéíóúÁÉÍÓÚ\'\s\.]*$', 'Sólo se permiten caracteres al fabéticos')],
         pass
-    
-
-    def get_fields(self):
-        return [(field.value_to_string(self)) for field in Person._meta.fields]
        
     full_name = property(_get_full_name)
     age = property(_calculate_age)
@@ -83,3 +86,25 @@ class Person(models.Model):
         ordering = ['last_names']
         verbose_name="Persona"
         verbose_name_plural="People"
+        
+class Role(BaseModel):    
+    role_name = models.CharField (
+        'Rol',
+        max_length=100,
+    )
+    description = models.TextField (
+        'Descripción',
+        max_length = 200,
+        blank = True,
+    )
+
+    def __unicode__(self):
+        return self.role_name
+    
+    def get_absolute_url(self):
+        return reverse('people:role-detail', kwargs={'pk': self.pk})
+    
+    
+    class Meta:
+        ordering = ['role_name']                
+        verbose_name="Rol"

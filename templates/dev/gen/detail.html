@@ -1,0 +1,21 @@
+<!--
+this basic template snippet is for development only
+-->
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Detalle</h3>
+			</div>
+			<dl class="dl-horizontal">
+				{% for value in object.get_fields %}
+				{% if value.name not in exclude_fields %}
+				<dt>{{ value.vname }}</dt>
+				<dd>{{ value.value }}</dd>
+				{% endif %}
+				{% endfor %}
+			</dl>
+		</div>
+	</div>
+</div>

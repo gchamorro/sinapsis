@@ -12,18 +12,21 @@ this basic template snippet is for development only
 			<table class="table table-hover">	
 				<thead>
 					<tr>
-						{% for item in layout_gen_list_theaders %}
+						{% for item in layout_gen_list_fields %}
+						{% if item.name not in exclude_fields %}
 						<th>{{ item.verbose_name }}</th>
+						{% endif %}
 						{% endfor %}
 					</tr>
 				</thead>
 				<tbody>
 				{% for item in object_list %}
 					<tr>
-						{% for value in item.get_fields %}
-						<td><a href="{% url detail_link item.id %}">{{ value }}</a></td>
+						{% for field in item.get_fields %}
+						{% if field.name not in exclude_fields %}
+						<td><a href="{% url actions.detail.url item.id %}">{{ field.value }}</a></td>
+						{% endif %}						
 						{% endfor %}
-
 					</tr>
 				{% endfor %}
 				</tbody>

@@ -1,0 +1,16 @@
+{% extends 'base/base_detail.html' %}
+{% load staticfiles %}
+{% block title %} {{ block.super }} {{ title_plus }} {% endblock %}
+{% block content %}
+{% include 'base/messages.html' %}
+
+<!--
+starts layout of the body (no nav...)
+-->
+{% include 'dev/gen/header.html' %}
+<hr>
+{% include 'dev/gen/actions.html' %}
+<hr>
+{% include 'dev/gen/detail.html' %}
+
+{% endblock %}
