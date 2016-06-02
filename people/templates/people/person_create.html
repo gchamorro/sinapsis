@@ -1,0 +1,15 @@
+{% extends 'base/base_detail.html' %}
+{% block title %} {{ block.super}} - Crear persona {% endblock %}
+{% block content %}
+
+<!--
+starts layout of the body (no nav...)
+-->
+{% include 'dev/gen/header.html' %}
+<hr>
+<form action="/people/crear/" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}

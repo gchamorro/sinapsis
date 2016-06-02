@@ -18,9 +18,14 @@ from .models import (
     Role,
 )
 
+from .forms import (
+    PersonForm,
+)
+
 CREATE_BASE_SUFFIX = '-create'
 INDEX_BASE_SUFFIX = '-index'
 DETAIL_BASE_SUFFIX = '-detail'
+EDIT_BASE_SUFFIX = '-edit'
 
 url_app_name = 'people'
 
@@ -28,6 +33,7 @@ url_app_name = 'people'
 person_urls_names = {
 'index_url_name' : 'people' + INDEX_BASE_SUFFIX,
 'create_url_name' : 'person' + CREATE_BASE_SUFFIX,
+'edit_url_name' : 'person' + EDIT_BASE_SUFFIX,
 'detail_url_name' : 'person' + DETAIL_BASE_SUFFIX,
 }
 
@@ -107,18 +113,18 @@ class PersonDetailView(DetailView):
     title_plus = 'De tail'
     exclude_fields = []
     layout_gen_list_fields = model._meta.get_fields()
-    layout_gen_list_fields = model._meta.get_fields()
     actions = {
-        'detail': {
-            'url': url_app_name + ':' + person_urls_names['detail_url_name'],
-            'title': 'Detalle'
+        'edit': {
+            'url': url_app_name + ':' + person_urls_names['edit_url_name'],
+            'args': 'person.id',
+            'title': 'Editar'
         },
         'create': {
             'url': url_app_name + ':' + person_urls_names['create_url_name'],
             'title': 'Crear',
         },
     }
-    exclude_actions = ('detail')
+    exclude_actions = []
     def get_context_data(self, **kwargs):
         context = super(PersonDetailView, self).get_context_data(**kwargs)
         context['title_plus'] = self.title_plus
@@ -133,16 +139,35 @@ class PersonDetailView(DetailView):
     
 class PersonCreateView(SuccessMessageMixin, CreateView):
     model = Person
-    # form_class = PersonForm    
-    # template_name = 'people/person_create.html'
-    # success_message = "%(full_name)s fue creado exitosamente."
-    # def get_success_message(self, cleaned_data):
-    #     return self.success_message % dict(
-    #         cleaned_data,
-    #         full_name=self.object.full_name,
-    #     )
+    form_class = PersonForm    
+    template_name = 'people/person_create.html'
+    success_message = "%(full_name)s fue creado exitosamente."
+    layout_gen_header_title = 'Create person!!!'
+    title_plus = 'cre a te'
+    def get_success_message(self, cleaned_data):
+        return self.success_message % dict(
+            cleaned_data,
+            full_name = self.object.full_name,
+        )
+    # def get_context_data(self, **kwargs):
+    #     context = super(PersonCreateView, self).get_context_data(**kwargs)
+    #     context['title_plus'] = self.title_plus
+    #     context['layout_gen_header_title'] = self.layout_gen_header_title
+    #     context
     
-    
+class PersonUpdateView(SuccessMessageMixin, UpdateView):
+    model = Person
+    template_name = 'people/modals/person_update_modal.html'
+    form_class = PersonForm
+    success_message = "%(full_name)s fue editado exitosamente."
+    def dispatch(self, *args, **kwargs):
+        self.person_id = kwargs['pk']
+        return super(PersonUpdateView, self).dispatch(*args, **kwargs)
+    def get_success_message(self, cleaned_data):
+        return self.success_message % dict(
+            cleaned_data,
+            full_name=self.object.full_name,
+        )     
     
     
     

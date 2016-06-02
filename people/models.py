@@ -5,8 +5,8 @@ from __future__ import unicode_literals
 #from . import global_validators
 from django.db import models
 from django.core.validators import RegexValidator
-
-# Create your models here.
+from django.core.urlresolvers import reverse, reverse_lazy
+import datetime
 
 class BaseModel(models.Model):
     def get_fields(self):
@@ -46,7 +46,7 @@ class Person(BaseModel):
     )
     document_number = models.CharField(
         'Nro. de Documento',
-        max_length=11,
+        max_length=8,
         validators=[RegexValidator('\d\d\d\d\d\d\d\d', 'El nro debe constar de ocho dígitos sin espacios o puntos')],
     )
     cuil = models.CharField(
@@ -60,7 +60,10 @@ class Person(BaseModel):
         'Fecha de nacimiento',
         null = True,
         blank = True,
-    )    
+    )
+    
+    def get_absolute_url(self):
+        return reverse('people:person-detail', kwargs={'pk': self.pk})  
     
     def __unicode__(self):
         return self.last_names.upper() + ', ' + self.first_names.title()
@@ -69,10 +72,10 @@ class Person(BaseModel):
         return '%s, %s' % (self.last_names.upper(), self.first_names.title())
     
     def _calculate_age(self):
-        today = date.today()
+        today = datetime.date.today()
         age = 'no birth date defined!'
-        if self.birth_date:
-            age = today.year - self.birth_date.year - ((today.month, today.day) < (self.birth_date.month, self.birth_date.day))
+        if self.birthday:
+            age = today.year - self.birthday.year - ((today.month, today.day) < (self.birthday.month, self.birthday.day))
         return age
     
     def validate_names(self, value):

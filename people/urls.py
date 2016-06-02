@@ -8,6 +8,7 @@ from people.views import (
     PersonListView,
     PersonCreateView,
     PersonDetailView,
+    PersonUpdateView,
     RoleListView,
 )
 
@@ -20,6 +21,7 @@ urlpatterns = [
     url(r'^$', PersonListView.as_view(), name=person_urls_names['index_url_name']),
     url(r'roles/$', RoleListView.as_view(), name=role_urls_names['index_url_name']),
     url(r'^crear/$', PersonCreateView.as_view(), name=person_urls_names['create_url_name']),
+    url(r'^editar/(?P<pk>[0-9]+)/$', PersonUpdateView.as_view(), name=person_urls_names['edit_url_name']),
     url(r'^perfil/(?P<pk>[0-9]+)/$', PersonDetailView.as_view(), name=person_urls_names['detail_url_name']),
     url(r'^roles/detalle/(?P<pk>[0-9]+)/$', PersonDetailView.as_view(), name=role_urls_names['detail_url_name']),
 

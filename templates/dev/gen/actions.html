@@ -6,7 +6,11 @@ this basic template snippet is for development only
 	<div class="col-md-8">
 		{% for key, action in actions.items %}
 		{% if key not in exclude_actions %}
+		{% if action.args %}
+		<a href="{% url action.url object.id %}" class="btn btn-primary">{{ action.title }}</a>
+		{% else %}
 		<a href="{% url action.url %}" class="btn btn-primary">{{ action.title }}</a>
+		{% endif %}
 		{% endif %}
 		{% endfor %}
 	</div>
